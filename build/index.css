@@ -1,0 +1,310 @@
+/*!*************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/style/Multitask.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************/
+.taskToDoCard {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: auto;
+  margin-bottom: 20px;
+  position: relative; /* Position relative for absolute positioning of buttons */
+}
+
+.taskToDomultiTaskTitle {
+  text-align: center;
+}
+
+.taskToDoCard-title {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+.taskToDoCard-description {
+  margin-bottom: 8px;
+  height: 18px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.taskToDostatusClass {
+  border: 1px solid #81837c;
+  padding: 5px 5px;
+  float: right;
+  border-radius: 3px;
+  background-color: #6f736e;
+  color: #FFFFFF;
+  font-size: 16px;
+}
+
+.taskToDoCard-date {
+  font-style: italic;
+  color: #666;
+}
+
+.taskToDoCard-buttons {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.taskToDoEdit-button, .taskToDoDelete-button {
+  margin: 0 8px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.taskToDoEdit-button:hover, .taskToDoDelete-button:hover {
+  background-color: #0056b3;
+}
+/*!*************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/style/EditPopup.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************/
+.popup-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup {
+  max-width: 600px;
+  margin: auto;
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin-top: 200px;
+}
+
+.popup h2 {
+  margin-top: 0;
+}
+
+.popup input,
+.popup textarea,
+.popup select {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.popup button {
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.submit-btn-background {
+  display: block;
+  background-color: #0056b3;
+}
+
+.description_box {
+  min-height: 200px;
+}
+
+.close-btn-background {
+  background-color: #990000;
+}
+
+.submit-btn-background {
+  background-color: #007bff;
+}
+
+.edit-post-title-text {
+  text-align: center;
+  width: calc(100% - 55px);
+  float: left;
+  padding: 10px 0px;
+}
+/*!************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/style/PopupSmg.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************/
+/* Popup Styles */
+.taskToDo-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.taskToDo-popup {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.taskToDo-close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  color: #888;
+}
+
+.taskToDo-popup-content p {
+  margin: 0;
+  font-size: 18px;
+}
+/*!*************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/style/Createtas.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************/
+.form-container {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-top: 10px;
+}
+
+input,
+textarea,
+select {
+  margin-top: 5px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.description_box {
+  min-height: 200px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.taskToDoform-container {
+  box-shadow: 0 4px 35px rgba(27, 25, 25, 0.1);
+  max-width: 500px;
+  padding: 20px;
+  background-color: #ffffff;
+  margin: auto;
+  margin-top: 20px;
+}
+/*!***************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/style/DisplayList.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************************/
+/* CSS for SingleList component */
+.taskToDo-single-list {
+  padding: 20px;
+}
+
+.taskToDo-task-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.taskToDo-task-description {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.taskToDo-task-author {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.taskToDo-task-create-date {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.taskToDo-task-validity-date {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.taskToDo-task-status {
+  font-size: 16px;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  margin-bottom: 10px;
+}
+
+.taskToDo-loading {
+  font-size: 16px;
+}
+/*!*****************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/style/NavigationBar.scss ***!
+  \*****************************************************************************************************************************************************************************************************************************************************/
+/* NavigationBar.css */
+.navbar {
+  background-color: #333;
+  padding: 10px 20px;
+}
+
+.navbar-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.navbar-item {
+  margin-right: 20px;
+}
+
+.navbar-link {
+  color: white;
+  text-decoration: none;
+}
+
+.navbar-link:hover {
+  text-decoration: underline;
+}
+/*!********************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/style/main.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************/
+.tasktodoContentHolder {
+  display: block;
+  float: left;
+  width: calc(100% - 50px);
+  padding: 25px;
+}
+
+/*# sourceMappingURL=index.css.map*/

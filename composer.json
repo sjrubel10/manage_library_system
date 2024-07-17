@@ -1,0 +1,15 @@
+{
+    "name": "tacktodo/learn",
+    "type": "tasktodo",
+    "autoload": {
+        "psr-4": {
+            "WOOLMS\\": "includes"
+        }
+    },
+    "authors": [
+        {
+            "name": "Rubel"
+        }
+    ],
+    "require": {}
+}

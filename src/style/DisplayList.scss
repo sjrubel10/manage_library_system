@@ -1,0 +1,43 @@
+/* CSS for SingleList component */
+.taskToDo-single-list {
+    padding: 20px;
+}
+
+.taskToDo-task-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.taskToDo-task-description {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.taskToDo-task-author {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.taskToDo-task-create-date {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.taskToDo-task-validity-date {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.taskToDo-task-status {
+    font-size: 16px;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    margin-bottom: 10px;
+}
+
+.taskToDo-loading {
+    font-size: 16px;
+}

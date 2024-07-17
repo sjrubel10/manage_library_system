@@ -86,6 +86,21 @@ class Tasks
         return $result;
     }
 
+    public static function search_books( $query, $page = 1, $per_page = 10) {
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'books';
+        $offset = ($page - 1) * $per_page;
+
+        $search_query = $wpdb->prepare(
+            "SELECT * FROM $table_name WHERE title LIKE %s LIMIT %d OFFSET %d",
+            '%' . $wpdb->esc_like($query) . '%',
+            $per_page,
+            $offset
+        );
+
+        return $wpdb->get_results($search_query);
+    }
+
     public static function LMS_get_single_book( $book_id ) {
 
         global $wpdb;

@@ -4788,6 +4788,7 @@ function MultipleTask() {
   const [showPopupSmg, setShowPopupSmg] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [successMessage, setSuccessMessage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
+  const [searchValue, setSearchValue] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -4841,13 +4842,33 @@ function MultipleTask() {
       console.error('Error:', error);
     }
   };
+  const handleSearchSubmit = async e => {
+    e.preventDefault();
+    const data = {
+      searchValue: searchValue,
+      limit: 10,
+      page: 1
+    };
+    try {
+      const response = await axios__WEBPACK_IMPORTED_MODULE_4__["default"].get(`${myVars.site_url}wp-json/tasktodo/v1/search`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-WP-Nonce': myVars.rest_nonce
+        },
+        params: data
+      });
+      setLists(response.data);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
   const handleEdit = list => {
     setSelectedList(list);
   };
   if (loading) {
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", {
       className: "taskToDomultiTaskTitle"
-    }, "Multiple Lists"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", {
+    }, "Multiple Books"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", {
       className: "taskToDomultiTaskTitle",
       id: "loadingSmg"
     }, "Loading..."));
@@ -4855,9 +4876,29 @@ function MultipleTask() {
 
   // console.log( lists );
 
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "headerTopHolder"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", {
     className: "taskToDomultiTaskTitle"
-  }, "Multiple Lists"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", null, lists && lists.length > 0 ? lists.map(list => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
+  }, "Multiple Lists"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "searchFieldHolder"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "wrap"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "booksearchHolder",
+    id: "booksearchHolder"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+    type: "text",
+    placeholder: "Search Something",
+    value: searchValue,
+    onChange: e => setSearchValue(e.target.value)
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    type: "submit",
+    className: "searchButton",
+    onClick: handleSearchSubmit
+  }, "Search"))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", {
+    className: "booksHolder"
+  }, lists && lists.length > 0 ? lists.map(list => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
     key: list.book_id,
     id: list.book_id
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {

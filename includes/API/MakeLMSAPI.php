@@ -64,6 +64,7 @@ class MakeLMSAPI extends WP_REST_Controller{
                 ],
             ]
         );
+
         register_rest_route(
             $this->namespace,
             '/deletebook',
@@ -71,6 +72,19 @@ class MakeLMSAPI extends WP_REST_Controller{
                 [
                     'methods'             => WP_REST_Server::DELETABLE,
                     'callback'            => [ $this, 'LMS_delete_books' ],
+                    'permission_callback' => [ $this, 'get_item_permissions_check' ],
+                    'args'                => [ $this->get_collection_params()],
+                ],
+            ]
+        );
+
+        register_rest_route(
+            $this->namespace,
+            '/search',
+            [
+                [
+                    'methods'             => WP_REST_Server::READABLE,
+                    'callback'            => [ $this, 'LMS_search_books' ],
                     'permission_callback' => [ $this, 'get_item_permissions_check' ],
                     'args'                => [ $this->get_collection_params()],
                 ],
@@ -150,7 +164,17 @@ class MakeLMSAPI extends WP_REST_Controller{
         return new WP_REST_Response( $smg, 200 );
     }
 
+    public function LMS_search_books( $request ){
 
+        $data = $request->get_params();
+        $search_value = isset( $data['searchValue'] ) ? sanitize_text_field( $data['searchValue'] ) : '';
+        $limit = isset( $data['limit'] ) ? sanitize_text_field( $data['limit'] ) : '';
+        $page = isset( $data['limit'] ) ? sanitize_text_field( $data['page'] ) : '';
+
+        $result = Tasks::search_books( $search_value, $page = 1, $limit );
+
+        return new WP_REST_Response( $result, 200 );
+    }
 
     /**
      * Checks if the current user has permissions to access the item.

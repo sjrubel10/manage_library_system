@@ -13,6 +13,7 @@ function MultipleTask() {
     const [showPopupSmg, setShowPopupSmg] = useState(false);
     const [loading, setLoading] = useState(false);
     const [successMessage, setSuccessMessage] = useState('');
+    const [searchValue, setSearchValue] = useState('');
 
     useEffect(() => {
         const fetchData = async () => {
@@ -71,13 +72,35 @@ function MultipleTask() {
         }
     };
 
+    const handleSearchSubmit = async (e) => {
+        e.preventDefault();
+        const data = {
+            searchValue: searchValue,
+            limit: 10,
+            page: 1,
+        };
+        try {
+            const response = await axios.get(`${myVars.site_url}wp-json/tasktodo/v1/search`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-WP-Nonce': myVars.rest_nonce
+                },
+                params: data
+            });
+
+            setLists(response.data);
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
     const handleEdit = (list) => {
         setSelectedList(list);
     };
 
     if( loading ){
        return <>
-           <h1 className="taskToDomultiTaskTitle">Multiple Lists</h1>
+           <h1 className="taskToDomultiTaskTitle">Multiple Books</h1>
            <h3 className="taskToDomultiTaskTitle" id="loadingSmg">Loading...</h3>
        </>
     }
@@ -86,8 +109,24 @@ function MultipleTask() {
 
     return (
         <div>
-            <h1 className="taskToDomultiTaskTitle">Multiple Lists</h1>
-            <ul>
+            <div className="headerTopHolder">
+                <h1 className="taskToDomultiTaskTitle">Multiple Lists</h1>
+                <div className="searchFieldHolder">
+                    <div className="wrap">
+                        <div className="booksearchHolder" id="booksearchHolder">
+                            <input
+                                type="text"
+                                placeholder="Search Something"
+                                value={searchValue}
+                                onChange={(e) => setSearchValue(e.target.value)}
+                            />
+                            <button type="submit" className="searchButton" onClick={handleSearchSubmit}>Search</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <ul className="booksHolder">
                 { lists && lists.length > 0 ? (
                     lists.map(list => (
                         <li key={list.book_id} id={list.book_id}>

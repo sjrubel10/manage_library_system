@@ -4564,7 +4564,7 @@ const Dashboard = () => {
     className: "dashboard"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "taskToDoCard"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", null, "Dashboard"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "Title: Task Manager App Description"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", null, "Description:"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Welcome to our Task Manager App, designed to streamline your productivity and keep your tasks organized. With a simple interface and intuitive features, managing your daily to-dos has never been easier."), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("b", null, "Main Features:"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Task Creation: Click the \"Task ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("b", null, "Create"), "\" button to add a new task to your list. Enter the task details such as title, description, due date, priority, and any additional notes. Once you've filled in the necessary information, simply hit \"Save\" to add the task to your list."), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Show All Tasks Tab: Navigate to the \"Show All ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("b", null, "Tasks"), "\" tab to view a comprehensive list of all your tasks. Here, you can easily see the details of each task including its title, due date, priority, and status. You can also edit or delete tasks directly from this tab."), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("b", null, "Additional Features:"), "Task Filtering: Easily filter tasks based on their status (e.g., pending, completed, overdue) or priority level to focus on what's most important. Task Sorting: Sort tasks by due date, priority, or alphabetically to better organize your workflow. Task Reminders: Set reminders for important tasks to ensure you never miss a deadline. Task Categories: Organize tasks into different categories or projects to better manage and prioritize your workload. Task Collaboration: Share tasks with team members or collaborators to delegate work and track progress together. Task Notifications: Receive notifications for upcoming deadlines or task updates to stay on top of your commitments.", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "With our Task Manager App, you'll have all the tools you need to stay organized, productive, and focused on achieving your goals. Whether you're managing personal tasks, work projects, or team assignments, our app is your go-to solution for efficient task management. Try it out today and experience the difference it can make in your productivity!"))));
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", null, "Dashboard"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "Title: Library manager Plugin Desciption"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", null, "Description:"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Welcome to our Library Manager App, designed to streamline your productivity and keep your tasks organized. With a simple interface and intuitive features, managing your daily task has never been easier."), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("b", null, "Main Features:"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Book Creation: Click the \"", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("b", null, "Create"), "\" button to add a new book to your list. Enter the book details such as title, description, date, author, and any additional notes. Once you've filled in the necessary information, simply hit \"Save\" to add the book to your list."), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Show All Books Tab: Navigate to the \"Show All ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("b", null, "Books"), "\" tab to view a comprehensive list of all your books. Here, you can easily see the details of each task including its title, author, isbn, and publisher. You can also edit, delete and search books directly from this tab."), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("b", null, "Additional Features:"), "This is crud operation app", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "With our Library Manager App, you'll have all the tools you need to stay organized, productive, and focused on achieving your goals. Whether you're managing personal tasks, work projects, or team assignments, our app is your go-to solution for efficient task management. Try it out today and experience the difference it can make in your productivity!"))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Dashboard);
 
@@ -4907,15 +4907,23 @@ function MultipleTask() {
     to: `/task/${list.book_id}`
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     className: "taskToDoCard-title"
-  }, list.title)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+  }, " ", list.title)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     className: "taskToDoCard-description"
-  }, list.author), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "bookInfoTitle"
+  }, "book author"), " : ", list.author), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     className: "taskToDoCard-description"
-  }, list.isbn), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "bookInfoTitle"
+  }, "book isbn"), " : ", list.isbn), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     className: "taskToDoCard-description"
-  }, list.publisher), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "bookInfoTitle"
+  }, "book publisher"), " : ", list.publisher), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     className: "taskToDoCard-date"
-  }, "Date: ", list.publication_date), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "bookInfoTitle"
+  }, "Date"), " : ", list.publication_date), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "taskToDoCard-buttons"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     className: "taskToDoEdit-button",

@@ -132,13 +132,13 @@ function MultipleTask() {
                         <li key={list.book_id} id={list.book_id}>
                             <div className="taskToDoCard">
                                 <Link to={`/task/${list.book_id}`} >
-                                    <p className="taskToDoCard-title">{list.title}</p>
+                                    <p className="taskToDoCard-title"> {list.title}</p>
                                 </Link>
 
-                                <p className="taskToDoCard-description">{list.author}</p>
-                                <p className="taskToDoCard-description">{list.isbn}</p>
-                                <p className="taskToDoCard-description">{list.publisher}</p>
-                                <p className="taskToDoCard-date">Date: {list.publication_date}</p>
+                                <p className="taskToDoCard-description"><span className="bookInfoTitle">book author</span> : {list.author}</p>
+                                <p className="taskToDoCard-description"><span className="bookInfoTitle">book isbn</span> : {list.isbn}</p>
+                                <p className="taskToDoCard-description"><span className="bookInfoTitle">book publisher</span> : {list.publisher}</p>
+                                <p className="taskToDoCard-date"><span className="bookInfoTitle">Date</span> : {list.publication_date}</p>
                                 <div className="taskToDoCard-buttons">
                                     {/* Call handleEdit with list data when Edit button is clicked */}
                                     <button className="taskToDoEdit-button" onClick={() => handleEdit(list)}>Edit</button>

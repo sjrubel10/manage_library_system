@@ -15,12 +15,13 @@ class Menu{
             __( 'Manage Library System', 'manage-library-system'),
             __( 'Manage Library System', 'manage-library-system'), 'manage_options',
             'manage-library-system',
-            [$this, 'manage_lybrary_system'],
+            [$this, 'manage_library_system'],
             'dashicons-book-alt',
             '2.1' );
     }
 
-    public function manage_lybrary_system() {
+    public function manage_library_system() {
+
         require_once WOOLMS_PATH . 'templates/app.php';
     }
 

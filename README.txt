@@ -12,22 +12,21 @@ Text Domain         :       manage-library-system
 LMS: Develop a WordPress plugin for managing a library system that handles book records using custom SQL queries and a REST API.
 
 == Description ==
-With this plugin, you can: Welcome to our Library Manager App, designed to streamline your productivity and keep your tasks organized. With a simple interface and intuitive features, managing your daily task has never been easier.
-Main Features:Book Creation: Click the "Create" button to add a new book to your list. Enter the book details such as title, description, date, author, and any additional notes. Once you've filled in the necessary information, simply hit "Save" to add the book to your list.
-Show All Books Tab: Navigate to the "Show All Books" tab to view a comprehensive list of all your books. Here, you can easily see the details of each task including its title, author, isbn, and publisher. You can also edit, delete and search books directly from this tab.
+Welcome to my Library Manager App, designed to keep your tasks organized. With a simple interface and intuitive features, managing a card operation.
+Main Features:Book Creation: Click the "Create" button to add a new book to your list. Enter the book details such as title, description, date, author, and any additional notes.
+Once you've filled in the necessary information, simply hit "Create book" to add the book to your list.
+Show All Books: Navigate to the "Books" tab to view a comprehensive list of all your books. Here, you can easily see the details of each task including its title, author, isbn, and publisher.
+You can also edit, delete and search books directly from this tab.
 
-I would like to introduce you to our
-project and provide instructions for its installation and utilization.
-Below are the steps you need to follow.
-
+How to download and installation
 Download or Clone the Project: You can access the project by following
 this GitHub link: git@github.com:sjrubel10/manage_library_system.git
+this is private repository.
 
-Installation: After downloading or cloning the project, please make
+Installation: After downloading or cloning the project, keep it in plugins folder in wordpress site where you want to test please make
 sure you have npm and composer installed on your system.
 
-At first INSTALL NPM In this project than Execute npm start: Navigate to the project directory and run npm start
-in your terminal to start the server.
+At first INSTALL NPM In this project, open this project in your terminal than Execute npm start: Navigate to the project directory and run npm start to start the server.
 
 Activate the Plugin: Once the server is running, activate the plugin
 within your project.
@@ -35,8 +34,11 @@ within your project.
 Exploring the Interface:
 
 Home Tab: The Home tab provides an introduction to the plugin.
-Create Tab: Clicking on this tab allows you to create tasks.
+
 Books Tab: Here, you'll find a list of all tasks.
+
+Create Tab: Clicking on this tab allows you to create tasks.
+
 Task Details: Clicking on a book title will take you to the book page,
 where you can see details on the book.
 Edit and Delete: Utilize the Edit and Delete buttons to perform

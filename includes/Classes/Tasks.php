@@ -3,6 +3,7 @@
 namespace WOOLMS\Classes;
 
 use WP_REST_Response;
+use WOOLMS\Traits\HandleTransient;
 
 /**
  * Class Tasks
@@ -10,6 +11,8 @@ use WP_REST_Response;
  * Provides methods for CRUD operations related to books using WordPress database.
  */
 class Tasks {
+
+    use HandleTransient;
     function __construct(){
         //code
     }
@@ -40,7 +43,7 @@ class Tasks {
 
         if ( $wpdb->insert_id ) {
 //            $curd_data[] = HandleTransient::get_book_by_book_id( $wpdb->insert_id );
-            HandleTransient :: get_compare_transiend_value_with_curd_data( $wpdb->insert_id, 'add_book' );
+            self::get_compare_transient_value_with_curd_data( $wpdb->insert_id, 'add_book' );
             $result = $wpdb->insert_id;
         } else {
             $result = false;
@@ -77,7 +80,7 @@ class Tasks {
         );
 
         if ($updated) {
-            HandleTransient :: get_compare_transiend_value_with_curd_data( $book_id, 'edit_book' );
+            self::get_compare_transient_value_with_curd_data( $book_id, 'edit_book' );
             return $updated;
         } else {
             return false;
@@ -102,7 +105,7 @@ class Tasks {
         if ($deleted) {
             $success = true;
             $message = 'Book deleted successfully.';
-            HandleTransient :: get_compare_transiend_value_with_curd_data( $book_id, 'delete' );
+            self::get_compare_transient_value_with_curd_data( $book_id, 'delete' );
         } else {
             $success = false;
             $message = 'Book could not be deleted.';

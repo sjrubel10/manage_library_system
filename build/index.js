@@ -4788,13 +4788,16 @@ function MultipleBook() {
   const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [successMessage, setSuccessMessage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
   const [searchValue, setSearchValue] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
+  const [pagination, setPagination] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
+  const [limit, setLimit] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(2);
+  const [allbooks, setAllbooks] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
+  const [numbers, setNumbers] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     const fetchData = async () => {
       setLoading(true);
       const status = 'pending';
-      const data = {
-        status: status
-      };
+      // const limit = 2;
+      const page = 1;
       try {
         const response = await axios__WEBPACK_IMPORTED_MODULE_4__["default"].get('' + myVars.site_url + 'wp-json/tasktodo/v1/books', {
           method: 'GET',
@@ -4802,10 +4805,20 @@ function MultipleBook() {
             'Content-Type': 'application/json',
             'X-WP-Nonce': myVars.rest_nonce
           },
-          body: JSON.stringify(data)
+          params: {
+            limit: limit,
+            page: page
+          }
         });
         // Set the fetched data to the state
-        setLists(response.data);
+        const result = response.data;
+        setPagination(result.total_pages);
+        setNumbers(result.pages_in_ary);
+
+        // console.log( result.total_pages );
+
+        setLists(result.data);
+        setAllbooks(1);
         setLoading(false);
       } catch (error) {
         setLoading(false);
@@ -4848,6 +4861,7 @@ function MultipleBook() {
       limit: 10,
       page: 1
     };
+    setAllbooks(0);
     try {
       const response = await axios__WEBPACK_IMPORTED_MODULE_4__["default"].get(`${myVars.site_url}wp-json/tasktodo/v1/search`, {
         headers: {
@@ -4863,6 +4877,45 @@ function MultipleBook() {
   };
   const handleEdit = list => {
     setSelectedList(list);
+  };
+  const removeClassFromSiblings = (element, className) => {
+    if (!element) return;
+    const siblings = element.parentElement.children;
+    for (let sibling of siblings) {
+      if (sibling !== element) {
+        sibling.classList.remove(className);
+      }
+    }
+  };
+  const handlePagination = async pageNumber => {
+    try {
+      const response = await axios__WEBPACK_IMPORTED_MODULE_4__["default"].get('' + myVars.site_url + 'wp-json/tasktodo/v1/books', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-WP-Nonce': myVars.rest_nonce
+        },
+        params: {
+          limit: limit,
+          page: pageNumber
+        }
+      });
+      // Set the fetched data to the state
+      const result = response.data;
+      //selectedPage
+      setLists(result.data);
+      setLoading(false);
+      let clickedId = pageNumber + 'LMSPage';
+      const element = document.getElementById(clickedId);
+      if (element) {
+        element.classList.add('selectedPage');
+        // Remove the class from all siblings
+        removeClassFromSiblings(element, 'selectedPage');
+      }
+    } catch (error) {
+      setLoading(false);
+      console.error('Error fetching data:', error);
+    }
   };
   if (loading) {
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", {
@@ -4897,7 +4950,7 @@ function MultipleBook() {
     onClick: handleSearchSubmit
   }, "Search"))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", {
     className: "booksHolder"
-  }, lists && lists.length > 0 ? lists.map(list => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
+  }, lists && lists.length > 0 ? lists.map(list => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
     key: list.book_id,
     id: list.book_id
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -4930,7 +4983,18 @@ function MultipleBook() {
   }, "Edit"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     className: "taskToDoDelete-button",
     onClick: () => handleDelete(list)
-  }, "Delete"))))) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "No data found"))), selectedList && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_EditPopup__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, "Delete")))))) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "No data found")), pagination > 0 && allbooks > 0 ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "paginationHolder"
+  }, numbers.map((num, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    key: num,
+    id: `${num}LMSPage`,
+    className: `pagination ${index === 0 ? 'selectedPage' : ''}`,
+    onClick: () => handlePagination(num)
+  }, num)))
+  // <div className="loadmoreButtonHolder"> {pagination}</div>
+  : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "loadmoreButtonHolder"
+  }, " ")), selectedList && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_EditPopup__WEBPACK_IMPORTED_MODULE_2__["default"], {
     list: selectedList,
     onClose: () => setSelectedList(null)
   }), showPopupSmg && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_PopupSmg__WEBPACK_IMPORTED_MODULE_3__["default"], {

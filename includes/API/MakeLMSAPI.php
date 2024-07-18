@@ -202,19 +202,46 @@ class MakeLMSAPI extends WP_REST_Controller{
      *
      * @return WP_REST_Response The REST API response object.
      */
-    public function LMS_get_books() {
+    public function LMS_get_books( $request ){
+
+        $data = $request->get_params();
+        $page = isset( $data['page'] ) ? intval( $data['page'] ) : 1; // Default page 1 if not provided
+        $limit = isset( $data['limit'] ) ? intval( $data['limit'] ) : 10; // Default limit 10 if not provided
+
+        error_log( print_r( [ '$limit' => $limit ], true ) );
+
         $books = get_transient('LMS_books_cached' );
+//        error_log( print_r( [ '$books' => $books ], true ) );
         if ( $books === false || ( is_array( $books ) && count( $books ) < 1) ) {
             global $wpdb;
             $table_name = $wpdb->prefix . 'books';
-            $books = $wpdb->get_results("SELECT `book_id`,`author`, `isbn`, `publication_date`, `publisher`, `title` FROM $table_name" );
+            $books = $wpdb->get_results("SELECT `book_id`,`author`, `isbn`, `publication_date`, `publisher`, `title` FROM $table_name", ARRAY_A);
             set_transient('LMS_books_cached', $books, 12 * HOUR_IN_SECONDS);
         }
+
         usort($books, function( $a, $b ) {
             return $b['book_id'] <=> $a['book_id'];
         });
 
-        return new WP_REST_Response( $books, 200 );
+        $pages_in_ary = [];
+        $total_books = count( $books );
+        $total_pages = ceil( $total_books / $limit );
+        if( $total_pages > 1 ){
+            for( $i= 1; $i<= $total_pages; $i++ ){
+                $pages_in_ary[] = $i;
+            }
+        }
+
+        $offset = ($page - 1) * $limit;
+        $books = array_slice( $books, $offset, $limit);
+
+        $result = array(
+          'data' =>   $books,
+          'total_pages' =>   $total_pages,
+          'pages_in_ary' =>   $pages_in_ary,
+        );
+
+        return new WP_REST_Response( $result, 200 );
     }
 
     /**

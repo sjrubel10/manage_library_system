@@ -14,14 +14,17 @@ function MultipleBook() {
     const [loading, setLoading] = useState(false);
     const [successMessage, setSuccessMessage] = useState('');
     const [searchValue, setSearchValue] = useState('');
+    const [pagination, setPagination] = useState('');
+    const [limit, setLimit] = useState(2);
+    const [allbooks, setAllbooks] = useState(0);
+    const [numbers, setNumbers] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
             const status = 'pending';
-            const data = {
-                status: status,
-            };
+            // const limit = 2;
+            const page  = 1;
             try {
                 const response = await axios.get(''+myVars.site_url+'wp-json/tasktodo/v1/books',{
                     method: 'GET',
@@ -29,10 +32,20 @@ function MultipleBook() {
                         'Content-Type': 'application/json',
                             'X-WP-Nonce': myVars.rest_nonce
                     },
-                    body: JSON.stringify(data),
+                    params: {
+                        limit: limit,
+                        page: page,
+                    },
                 });
                 // Set the fetched data to the state
-                setLists(response.data);
+                const result = response.data;
+                setPagination( result.total_pages );
+                setNumbers( result.pages_in_ary );
+
+                // console.log( result.total_pages );
+
+                setLists(result.data);
+                setAllbooks( 1 );
                 setLoading(false);
             } catch (error) {
                 setLoading( false );
@@ -79,6 +92,7 @@ function MultipleBook() {
             limit: 10,
             page: 1,
         };
+        setAllbooks( 0 );
         try {
             const response = await axios.get(`${myVars.site_url}wp-json/tasktodo/v1/search`, {
                 headers: {
@@ -96,6 +110,49 @@ function MultipleBook() {
 
     const handleEdit = (list) => {
         setSelectedList(list);
+    };
+
+
+    const removeClassFromSiblings = (element, className) => {
+        if (!element) return;
+        const siblings = element.parentElement.children;
+        for (let sibling of siblings) {
+            if (sibling !== element) {
+                sibling.classList.remove(className);
+            }
+        }
+    };
+    const handlePagination = async (pageNumber) => {
+        try {
+            const response = await axios.get(''+myVars.site_url+'wp-json/tasktodo/v1/books',{
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-WP-Nonce': myVars.rest_nonce
+                },
+                params: {
+                    limit: limit,
+                    page: pageNumber,
+                },
+            });
+            // Set the fetched data to the state
+            const result = response.data;
+            //selectedPage
+            setLists(result.data);
+            setLoading(false);
+
+            let clickedId = pageNumber+'LMSPage';
+            const element = document.getElementById(clickedId);
+            if (element) {
+                element.classList.add('selectedPage');
+                // Remove the class from all siblings
+                removeClassFromSiblings(element, 'selectedPage');
+            }
+
+        } catch (error) {
+            setLoading( false );
+            console.error('Error fetching data:', error);
+        }
     };
 
     if( loading ){
@@ -129,29 +186,50 @@ function MultipleBook() {
             <ul className="booksHolder">
                 { lists && lists.length > 0 ? (
                     lists.map(list => (
-                        <li key={list.book_id} id={list.book_id}>
-                            <div className="taskToDoCard">
-                                <Link to={`/task/${list.book_id}`} >
-                                    <p className="taskToDoCard-title"> {list.title}</p>
-                                </Link>
+                        <>
+                            <li key={list.book_id} id={list.book_id}>
+                                <div className="taskToDoCard">
+                                    <Link to={`/task/${list.book_id}`} >
+                                        <p className="taskToDoCard-title"> {list.title}</p>
+                                    </Link>
 
-                                <p className="taskToDoCard-description"><span className="bookInfoTitle">book author</span> : {list.author}</p>
-                                <p className="taskToDoCard-description"><span className="bookInfoTitle">book isbn</span> : {list.isbn}</p>
-                                <p className="taskToDoCard-description"><span className="bookInfoTitle">book publisher</span> : {list.publisher}</p>
-                                <p className="taskToDoCard-date"><span className="bookInfoTitle">Date</span> : {list.publication_date}</p>
-                                <div className="taskToDoCard-buttons">
-                                    {/* Call handleEdit with list data when Edit button is clicked */}
-                                    <button className="taskToDoEdit-button" onClick={() => handleEdit(list)}>Edit</button>
-                                    <button className="taskToDoDelete-button" onClick={() => handleDelete( list )}>Delete</button>
+                                    <p className="taskToDoCard-description"><span className="bookInfoTitle">book author</span> : {list.author}</p>
+                                    <p className="taskToDoCard-description"><span className="bookInfoTitle">book isbn</span> : {list.isbn}</p>
+                                    <p className="taskToDoCard-description"><span className="bookInfoTitle">book publisher</span> : {list.publisher}</p>
+                                    <p className="taskToDoCard-date"><span className="bookInfoTitle">Date</span> : {list.publication_date}</p>
+                                    <div className="taskToDoCard-buttons">
+                                        {/* Call handleEdit with list data when Edit button is clicked */}
+                                        <button className="taskToDoEdit-button" onClick={() => handleEdit(list)}>Edit</button>
+                                        <button className="taskToDoDelete-button" onClick={() => handleDelete( list )}>Delete</button>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
+                            </li>
+                        </>
                     ))
                 ) : (
                     <li>
                         <p>No data found</p>
                     </li>
                 )}
+                { pagination > 0 && allbooks > 0 ? (
+                        <div className="paginationHolder">
+                            {/* Loop through the numbers array and generate <p> tags */}
+                            { numbers.map((num, index) => (
+                                <p
+                                    key={num}
+                                    id = {`${num}LMSPage`}
+                                    className={`pagination ${index === 0 ? 'selectedPage' : ''}`}
+                                    onClick={() => handlePagination(num)}
+                                >
+                                    {num}
+                                </p>
+                            ))}
+                        </div>
+                    // <div className="loadmoreButtonHolder"> {pagination}</div>
+                ) : (
+                    <div className="loadmoreButtonHolder"> </div>
+                )}
+
             </ul>
 
             {/* Render EditPopup component with selectedList as prop */}

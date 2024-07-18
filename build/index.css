@@ -69,6 +69,33 @@
   font-size: 15px;
   font-weight: bold;
 }
+
+#booksearchHolder {
+  margin-left: calc(100% - 300px);
+}
+
+.selectedPage {
+  background-color: #2f2c2c;
+  color: #f6f6f6;
+}
+
+.paginationHolder {
+  display: flex;
+  width: 100%;
+  margin-left: calc(40% - 20px);
+}
+
+.pagination {
+  width: 12px;
+  height: 18px;
+  text-align: center;
+  margin: 5px;
+  padding: 3px 5px;
+  cursor: pointer;
+  border: 1px solid #c5c4c4;
+  border-radius: 3px;
+  font-weight: bolder;
+}
 /*!*************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/style/EditPopup.scss ***!
   \*************************************************************************************************************************************************************************************************************************************************/

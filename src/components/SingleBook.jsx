@@ -2,7 +2,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
-function SingleList() {
+function SingleBook() {
     const { id } = useParams();
 
     return (
@@ -13,4 +13,4 @@ function SingleList() {
     );
 }
 
-export default SingleList;
+export default SingleBook;

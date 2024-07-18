@@ -1,8 +1,8 @@
 import React from 'react';
 import { HashRouter as Router, Routes, Route, createHashRouter, RouterProvider } from 'react-router-dom';
-import MultipleList from './components/MultipleTask';
+import MultipleList from './components/MultipleBook';
 import Dashboard from './components/Dashboard';
-import CreateTask from './components/CreateTask';
+import CreateBook from './components/CreateBook';
 import DisplayTask from './components/DisplayTask';
 import Main from './Layouts/Main';
 const routes = createHashRouter([
@@ -15,7 +15,7 @@ const routes = createHashRouter([
                 element:<Dashboard/>
             },
             {
-                path:"/tasks",
+                path:"/books",
                 element:<MultipleList/>
             },
             {
@@ -25,7 +25,7 @@ const routes = createHashRouter([
             },
             {
                 path:"create",
-                element: <CreateTask/>,
+                element: <CreateBook/>,
             }
         ]
     },

@@ -14,12 +14,29 @@
 if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly
 }
+
 require_once __DIR__.'/vendor/autoload.php';
+
 new WOOLMS\Api();
+
+/**
+ * Class ManageLibrarySystem
+ *
+ * This class manages the initialization, activation, and setup of the Manage Library System plugin.
+ */
 final class ManageLibrarySystem {
 
+    /**
+     * The plugin version.
+     */
     const plugin_version = '1.0.0';
 
+    /**
+     * ManageLibrarySystem constructor.
+     *
+     * Initializes the plugin by defining constants, registering activation hook,
+     * and adding action to load plugin components.
+     */
     private function __construct() {
 
         $this->define_constants();
@@ -41,6 +58,12 @@ final class ManageLibrarySystem {
         return $instance;
     }
 
+    /**
+     * Initializes the plugin based on context.
+     *
+     * If in admin context, initializes the admin functionality.
+     * For other contexts, could handle additional initialization tasks.
+     */
     public function wooLMS_init_plugin() {
 
         if( is_admin() ) {
@@ -51,6 +74,11 @@ final class ManageLibrarySystem {
 
     }
 
+    /**
+     * Defines plugin-related constants.
+     *
+     * Defines paths, URLs, plugin name, and version constants.
+     */
     public function define_constants() {
         define( 'WOOLMS_PATH', plugin_dir_path(__FILE__ ) );
         define( 'WOOLMS_LINK', plugin_dir_url(__FILE__ ) );
@@ -62,6 +90,11 @@ final class ManageLibrarySystem {
         define( 'WOOLMS_admin_ulr', get_admin_url() );
     }
 
+    /**
+     * Creates the database table for books on plugin activation.
+     *
+     * Uses WordPress global $wpdb to create a custom table 'prefix_books' if it doesn't exist.
+     */
     public function create_books_table() {
 
         global $wpdb;
@@ -82,6 +115,12 @@ final class ManageLibrarySystem {
         dbDelta($sql);
     }
 
+    /**
+     * Activates the plugin.
+     *
+     * Performs activation tasks such as updating version, creating books table if not exists,
+     * and setting plugin installation time.
+     */
     public function activate() {
 
         update_option( 'manageLibraryManagement_version', WOOLMS_VERSION );
@@ -102,6 +141,11 @@ final class ManageLibrarySystem {
 
 }
 
+/**
+ * Initializes the ManageLibrarySystem plugin.
+ *
+ * @return ManageLibrarySystem Singleton instance of ManageLibrarySystem.
+ */
 function init_manage_library_system() {
 
     return ManageLibrarySystem::init();

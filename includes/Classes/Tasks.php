@@ -4,12 +4,26 @@ namespace WOOLMS\Classes;
 
 use WP_REST_Response;
 
-class Tasks
-{
+/**
+ * Class Tasks
+ *
+ * Provides methods for CRUD operations related to books using WordPress database.
+ */
+class Tasks {
     function __construct(){
         //code
     }
 
+    /**
+     * Creates a new book entry in the database.
+     *
+     * @param string $title The title of the book.
+     * @param string $publisher The publisher of the book.
+     * @param string $publication_date The publication date of the book.
+     * @param string $isbn The ISBN of the book.
+     * @param string $author The author of the book.
+     * @return int|false The ID of the inserted book or false on failure.
+     */
     public static function create_book( $title, $publisher, $publication_date, $isbn, $author ) {
         global $wpdb;
         $table_name = $wpdb->prefix . 'books';
@@ -35,6 +49,17 @@ class Tasks
         return $result;
     }
 
+    /**
+     * Updates an existing book entry in the database.
+     *
+     * @param int $book_id The ID of the book to update.
+     * @param string $title The new title of the book.
+     * @param string $author The new author of the book.
+     * @param string $publisher The new publisher of the book.
+     * @param string $isbn The new ISBN of the book.
+     * @param string $publication_date The new publication date of the book.
+     * @return bool|int True on success, false on failure.
+     */
     public static function LMS_update_book( $book_id, $title, $author, $publisher, $isbn, $publication_date ) {
 
         global $wpdb;
@@ -59,6 +84,12 @@ class Tasks
         }
     }
 
+    /**
+     * Deletes a book entry from the database.
+     *
+     * @param int $book_id The ID of the book to delete.
+     * @return array An array with 'success' boolean and 'message' string.
+     */
     public static function LMS_delete_book( $book_id ) {
 
         global $wpdb;
@@ -86,6 +117,14 @@ class Tasks
         return $result;
     }
 
+    /**
+     * Searches for books in the database based on title.
+     *
+     * @param string $query The search query string.
+     * @param int $page The page number for pagination.
+     * @param int $per_page The number of results per page.
+     * @return array|null Array of book objects or null if no results.
+     */
     public static function search_books( $query, $page = 1, $per_page = 10) {
         global $wpdb;
         $table_name = $wpdb->prefix . 'books';
@@ -101,6 +140,12 @@ class Tasks
         return $wpdb->get_results($search_query);
     }
 
+    /**
+     * Retrieves a single book from the database by its ID.
+     *
+     * @param int $book_id The ID of the book to retrieve.
+     * @return WP_REST_Response|null The book object or null if not found.
+     */
     public static function LMS_get_single_book( $book_id ) {
 
         global $wpdb;
@@ -110,14 +155,5 @@ class Tasks
 
         return new WP_REST_Response( $book, 200 );
     }
-
-    public function get_display_name( $user_id ) {
-
-        if (!$user = get_userdata( $user_id ) )
-            return false;
-
-        return $user->data->display_name;
-    }
-
 
 }

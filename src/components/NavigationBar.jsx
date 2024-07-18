@@ -8,7 +8,7 @@ function NavigationBar() {
         <nav className="navbar">
             <ul className="navbar-list">
                 <li className="navbar-item"><Link to="/" className="navbar-link">Home</Link></li>
-                <li className="navbar-item"><Link to="/tasks" className="navbar-link">Books</Link></li>
+                <li className="navbar-item"><Link to="/books" className="navbar-link">Books</Link></li>
                 <li className="navbar-item"><Link to="/create" className="navbar-link">Create</Link></li>
                 {/* Add more links as needed */}
             </ul>

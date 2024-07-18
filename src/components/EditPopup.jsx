@@ -43,7 +43,6 @@ const EditPopup = ({ onClose, list }) => {
             });
 
             const responseData = await response.json();
-            console.log(responseData);
             setEditDone(true); // Set editDone to true after successful update
         } catch (error) {
             console.error('Error:', error);

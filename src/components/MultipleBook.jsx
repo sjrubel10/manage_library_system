@@ -6,7 +6,7 @@ import EditPopup from '../components/EditPopup';
 import PopupSmg from '../components/PopupSmg';
 import { memo } from 'react';
 
-function MultipleTask() {
+function MultipleBook() {
     const [lists, setLists] = useState([]);
     const [selectedList, setSelectedList] = useState(null); // State to hold selected list data
 
@@ -161,4 +161,4 @@ function MultipleTask() {
     );
 }
 
-export default memo( MultipleTask );
+export default memo( MultipleBook );

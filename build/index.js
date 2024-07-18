@@ -4369,9 +4369,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
-/* harmony import */ var _components_MultipleTask__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/MultipleTask */ "./src/components/MultipleTask.jsx");
+/* harmony import */ var _components_MultipleBook__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/MultipleBook */ "./src/components/MultipleBook.jsx");
 /* harmony import */ var _components_Dashboard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Dashboard */ "./src/components/Dashboard.jsx");
-/* harmony import */ var _components_CreateTask__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/CreateTask */ "./src/components/CreateTask.jsx");
+/* harmony import */ var _components_CreateBook__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/CreateBook */ "./src/components/CreateBook.jsx");
 /* harmony import */ var _components_DisplayTask__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/DisplayTask */ "./src/components/DisplayTask.jsx");
 /* harmony import */ var _Layouts_Main__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Layouts/Main */ "./src/Layouts/Main.jsx");
 
@@ -4389,15 +4389,15 @@ const routes = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.createHashRouter
     path: "/",
     element: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_Dashboard__WEBPACK_IMPORTED_MODULE_2__["default"], null)
   }, {
-    path: "/tasks",
-    element: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_MultipleTask__WEBPACK_IMPORTED_MODULE_1__["default"], null)
+    path: "/books",
+    element: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_MultipleBook__WEBPACK_IMPORTED_MODULE_1__["default"], null)
   }, {
     path: "/task/:id",
     // element:<SingleList/>
     element: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_DisplayTask__WEBPACK_IMPORTED_MODULE_4__["default"], null)
   }, {
     path: "create",
-    element: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CreateTask__WEBPACK_IMPORTED_MODULE_3__["default"], null)
+    element: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CreateBook__WEBPACK_IMPORTED_MODULE_3__["default"], null)
   }]
 }]);
 function App() {
@@ -4434,9 +4434,9 @@ function Main() {
 
 /***/ }),
 
-/***/ "./src/components/CreateTask.jsx":
+/***/ "./src/components/CreateBook.jsx":
 /*!***************************************!*\
-  !*** ./src/components/CreateTask.jsx ***!
+  !*** ./src/components/CreateBook.jsx ***!
   \***************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -4450,7 +4450,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const CreateTask = () => {
+const CreateBook = () => {
   // State variables to hold form data and popup visibility
   const [title, setTitle] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
   const [author, setAuthor] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
@@ -4541,7 +4541,7 @@ const CreateTask = () => {
     className: "popup-message"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Task successfully created!")));
 };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CreateTask);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CreateBook);
 
 /***/ }),
 
@@ -4700,7 +4700,6 @@ const EditPopup = ({
         body: JSON.stringify(data)
       });
       const responseData = await response.json();
-      console.log(responseData);
       setEditDone(true); // Set editDone to true after successful update
     } catch (error) {
       console.error('Error:', error);
@@ -4756,9 +4755,9 @@ const EditPopup = ({
 
 /***/ }),
 
-/***/ "./src/components/MultipleTask.jsx":
+/***/ "./src/components/MultipleBook.jsx":
 /*!*****************************************!*\
-  !*** ./src/components/MultipleTask.jsx ***!
+  !*** ./src/components/MultipleBook.jsx ***!
   \*****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -4781,7 +4780,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function MultipleTask() {
+function MultipleBook() {
   const [lists, setLists] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
   const [selectedList, setSelectedList] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null); // State to hold selected list data
 
@@ -4939,7 +4938,7 @@ function MultipleTask() {
     onClose: () => setSelectedList(null)
   }));
 }
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react__WEBPACK_IMPORTED_MODULE_0__.memo)(MultipleTask));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react__WEBPACK_IMPORTED_MODULE_0__.memo)(MultipleBook));
 
 /***/ }),
 
@@ -4976,7 +4975,7 @@ function NavigationBar() {
   }, "Home")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
     className: "navbar-item"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
-    to: "/tasks",
+    to: "/books",
     className: "navbar-link"
   }, "Books")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
     className: "navbar-item"

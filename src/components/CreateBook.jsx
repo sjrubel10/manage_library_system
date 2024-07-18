@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../style/Createtas.scss';
 
-const CreateTask = () => {
+const CreateBook = () => {
     // State variables to hold form data and popup visibility
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
@@ -114,4 +114,4 @@ const CreateTask = () => {
     );
 };
 
-export default CreateTask;
+export default CreateBook;

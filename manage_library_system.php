@@ -41,7 +41,7 @@ final class ManageLibrarySystem {
 
         $this->define_constants();
         register_activation_hook( __FILE__, [$this, 'activate']);
-//        register_deactivation_hook( __FILE__, [$this, 'deactivate'] );
+        register_deactivation_hook( __FILE__, [$this, 'deactivate'] );
         add_action( 'plugins_loaded', [ $this, 'wooLMS_init_plugin' ] );
 
     }
@@ -130,15 +130,16 @@ final class ManageLibrarySystem {
         if ( ! $wpdb->get_var( $query ) == $table_name ) {
             $this->create_books_table();
         }
-
         $installed = get_option( 'manage_library_management_installed' );
 
         if( ! $installed ) {
             update_option( 'manage_library_management_installed', time() );
         }
-
     }
 
+    public function deactivate(){
+        delete_transient('LMS_books_cached');
+    }
 }
 
 /**

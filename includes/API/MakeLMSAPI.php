@@ -208,10 +208,7 @@ class MakeLMSAPI extends WP_REST_Controller{
         $page = isset( $data['page'] ) ? intval( $data['page'] ) : 1; // Default page 1 if not provided
         $limit = isset( $data['limit'] ) ? intval( $data['limit'] ) : 10; // Default limit 10 if not provided
 
-        error_log( print_r( [ '$limit' => $limit ], true ) );
-
         $books = get_transient('LMS_books_cached' );
-//        error_log( print_r( [ '$books' => $books ], true ) );
         if ( $books === false || ( is_array( $books ) && count( $books ) < 1) ) {
             global $wpdb;
             $table_name = $wpdb->prefix . 'books';
